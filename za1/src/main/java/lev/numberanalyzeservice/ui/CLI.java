@@ -9,6 +9,7 @@ public class CLI implements Starter {
     public void run() {
         Scanner sc = new Scanner(System.in);
         NumberAnalyzeService nas = new NumberAnalyzeService();
+        NumberUtils numberUtils = new NumberUtils();
 
         while (true) {
             System.out.println("Введите число или exit для выхода.");
@@ -19,7 +20,7 @@ public class CLI implements Starter {
                 break;
             }
 
-            if (!NumberUtils.isCreatable(strNum)) {
+            if (!numberUtils.isCreatable(strNum)) {
                 System.out.println("Введено неверное число!");
                 System.out.println();
                 continue;

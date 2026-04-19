@@ -2,7 +2,7 @@ package lev.framework.utils;
 
 public class NumberUtils {
 
-    public static boolean isCreatable(String str) {
+    public boolean isCreatable(String str) {
         if (str == null || str.isEmpty()) {
             return false;
         }
