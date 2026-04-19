@@ -1,4 +1,4 @@
-package lev.framework;
+package lev.numberanalyzeservice;
 
 public class NumberAnalyzeService {
     public boolean isDouble(String str){

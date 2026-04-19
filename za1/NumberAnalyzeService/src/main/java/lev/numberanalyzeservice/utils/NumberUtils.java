@@ -1,4 +1,4 @@
-package lev.framework.utils;
+package lev.numberanalyzeservice.utils;
 
 public class NumberUtils {
 

@@ -1,4 +1,4 @@
-package lev.framework;
+package lev.numberanalyzeservice;
 
 public interface Starter {
     public void run();
