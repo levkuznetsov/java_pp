@@ -3,7 +3,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### IntelliJ IDEA ###
+### IntelliJ IDEA приколы ###
 .idea/modules.xml
 .idea/jarRepositories.xml
 .idea/compiler.xml
@@ -11,8 +11,9 @@ target/
 *.iws
 *.iml
 *.ipr
+java_pp.iml
 
-### Eclipse ###
+### Eclipse фичи ###
 .apt_generated
 .classpath
 .factorypath
