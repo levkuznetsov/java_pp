@@ -1,5 +1,6 @@
 package lev.numberanalyzeservice;
 
+import lev.numberanalyzeservice.ui.Starter;
 import lev.numberanalyzeservice.ui.CLI;
 
 public class Main {

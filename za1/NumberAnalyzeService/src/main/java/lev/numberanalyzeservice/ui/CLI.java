@@ -2,17 +2,16 @@ package lev.numberanalyzeservice.ui;
 
 import java.util.Scanner;
 
-import lev.numberanalyzeservice.NumberAnalyzeService;
-import lev.numberanalyzeservice.Starter;
+import lev.numberanalyzeservice.service.NumberAnalyzeService;
 import lev.numberanalyzeservice.utils.*;
 
 public class CLI implements Starter {
+    Scanner sc = new Scanner(System.in);
+    NumberAnalyzeService nas = new NumberAnalyzeService();
+    NumberUtils numberUtils = new NumberUtils();
 
     @Override
     public void run() {
-        Scanner sc = new Scanner(System.in);
-        NumberAnalyzeService nas = new NumberAnalyzeService();
-        NumberUtils numberUtils = new NumberUtils();
 
         while (true) {
             System.out.println("Введите число или exit для выхода.");
@@ -24,7 +23,7 @@ public class CLI implements Starter {
             }
 
             if (!numberUtils.isCreatable(strNum)) {
-                System.out.println("Введено неверное число!");
+                System.out.println("Неправильный формат числа.");
                 System.out.println();
                 continue;
             }
@@ -45,7 +44,7 @@ public class CLI implements Starter {
             }
 
             if (isDouble) {
-                System.out.println("Число является дробью, проверка на чётное/нечётное бесполезна");
+                System.out.println("Число нечётное");
             }
             else{
                 if (num % 2 == 0) {

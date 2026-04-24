@@ -19,9 +19,8 @@ public class NumberUtils {
         }
 
         for (int i = startNum; i < chars.length; i++) {
-            char c = chars[i];
 
-            if (c == '.') {
+            if (chars[i] == '.') {
                 if (hasPoint) {
                     return false;
                 }
@@ -31,7 +30,7 @@ public class NumberUtils {
                 }
                 continue;
             }
-            if (!Character.isDigit(c)) {
+            if (!Character.isDigit(chars[i])) {
                 return false;
             }
         }
