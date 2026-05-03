@@ -1,11 +1,11 @@
 package ui;
 
-import service.Service;
+import service.PrimeSequenceService;
 import java.util.Scanner;
 
 public class CLI implements Starter {
     Scanner sc = new Scanner(System.in);
-    Service service = new Service();
+    PrimeSequenceService primeSequenceService = new PrimeSequenceService();
 
     @Override
     public void run() {
@@ -19,8 +19,8 @@ public class CLI implements Starter {
 
             int inputNum = Integer.parseInt(input);
 
-            IO.println(service.randomQueue(inputNum));
-            IO.println("Простые числа в последовательности: " + service.getResult(inputNum));
+            IO.println(primeSequenceService.randomQueue(inputNum));
+            IO.println("Простые числа в последовательности: " + primeSequenceService.getResult(inputNum));
         }
     }
 }
