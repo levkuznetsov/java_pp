@@ -4,17 +4,16 @@ import service.Service;
 import java.util.Scanner;
 
 public class CLI implements Starter {
-    String EXIT_COMMAND = "exit";
     Scanner sc = new Scanner(System.in);
     Service service = new Service();
 
     @Override
     public void run() {
         while (true) {
-            IO.println("Введите число или %s для выхода:".formatted(EXIT_COMMAND));
+            IO.println("Введите число или exit для выхода:");
             IO.print("> ");
             String input = sc.nextLine();
-            if (input.equals(EXIT_COMMAND)) {
+            if (input.equals("exit")) {
                 break;
             }
 
