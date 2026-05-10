@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/za1/PrimeSequenceChecker/PrimeSequenceChecker.iml" filepath="$PROJECT_DIR$/za1/PrimeSequenceChecker/PrimeSequenceChecker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/za1/ShapeAreaCalculator/ShapeAreaCalculator.iml" filepath="$PROJECT_DIR$/za1/ShapeAreaCalculator/ShapeAreaCalculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/java_pp.iml" filepath="$PROJECT_DIR$/.idea/java_pp.iml" />
+    </modules>
+  </component>
+</project>
