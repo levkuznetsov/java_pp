@@ -16,4 +16,8 @@ public class Rectangle extends Figure {
     public double countArea() {
         return width * length;
     }
+
+    public static Rectangle of(double width, double length){
+        return new Rectangle(width, length);
+    }
 }

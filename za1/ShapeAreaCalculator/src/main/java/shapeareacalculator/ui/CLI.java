@@ -8,18 +8,19 @@ import service.ShapeAreaService;
 import java.util.Scanner;
 
 public class CLI implements Starter {
-    Scanner sc = new Scanner(System.in);
-    ShapeAreaService service = new ShapeAreaService();
+    private final ConsoleView view;
+    private final ShapeAreaService service;
+
+    public CLI(Scanner sc, ShapeAreaService service) {
+        this.view = new ConsoleView(sc);
+        this.service = service;
+    }
 
     @Override
     public void run() {
         while (true) {
-            IO.println("Введите номер фигуры или exit для выхода:");
-            IO.println("1. Круг");
-            IO.println("2. Квадрат");
-            IO.println("3. Прямоугольник");
-            IO.print("> ");
-            String input = sc.nextLine().trim();
+            view.showMenu();
+            String input = view.getInput();
 
             if (input.equalsIgnoreCase("exit")) {
                 break;
@@ -27,62 +28,36 @@ public class CLI implements Starter {
 
             try {
                 switch (input) {
-                    case "1":
-                        IO.println("Введите радиус круга:");
-                        IO.print("> ");
-                        double radius = format(sc.nextLine());
-                        circleSelect(radius);
-                        break;
-                    case "2":
-                        IO.println("Введите длину стороны квадрата:");
-                        IO.print("> ");
-                        double length = format(sc.nextLine());
-                        squareSelect(length);
-                        break;
-                    case "3":
-                        IO.println("Введите ширину прямоугольника:");
-                        IO.print("> ");
-                        double width = format(sc.nextLine());
-
-                        IO.println("Введите длину прямоугольника:");
-                        IO.print("> ");
-                        double rectLength = format(sc.nextLine());
-
-                        rectangleSelect(width, rectLength);
-                        break;
-                    default:
-                        IO.println("Введен неправильный выбор.");
+                    case "1" -> handleCircle();
+                    case "2" -> handleSquare();
+                    case "3" -> handleRectangle();
+                    default -> IO.println("Введен неправильный выбор.");
                 }
-                } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 IO.println("Пожалуйста, введите корректное число.");
             }
         }
-        sc.close();
     }
 
-    private void circleSelect(double radius) {
+    private void handleCircle() {
+        double radius = view.getUserChoice("Введите радиус круга:");
         IO.println("Площадь круга = " + service.formatArea(
-                service.countArea(
-                        new Circle(radius))
+                service.countArea(Circle.of(radius))
         ));
     }
 
-    private void squareSelect(double length) {
+    private void handleSquare() {
+        double length = view.getUserChoice("Введите длину стороны квадрата:");
         IO.println("Площадь квадрата = " + service.formatArea(
-                service.countArea(
-                        new Square(length)
-                )
+                service.countArea(Square.of(length))
         ));
     }
 
-    private void rectangleSelect(double width, double length) {
+    private void handleRectangle() {
+        double width = view.getUserChoice("Введите ширину прямоугольника:");
+        double rectLength = view.getUserChoice("Введите длину прямоугольника:");
         IO.println("Площадь прямоугольника = " + service.formatArea(
-                service.countArea(
-                        new Rectangle(width, length))
+                service.countArea(Rectangle.of(width, rectLength))
         ));
-    }
-
-    private double format(String s){
-        return Double.parseDouble(s.replace(',', '.').strip());
     }
 }

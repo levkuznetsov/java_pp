@@ -10,9 +10,9 @@ public class ShapeAreaService {
 
     public String formatArea(double area){
         if (area == (int) area) {
-            return String.valueOf((int) area);
+            return String.valueOf((int) area).replace(',', '.').strip();
         }
 
-        return String.valueOf(area);
+        return String.valueOf(area).replace(',', '.').strip();
     }
 }

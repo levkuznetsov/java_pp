@@ -14,4 +14,8 @@ public class Circle extends Figure {
     public double countArea() {
         return Math.PI * radius * radius;
     }
+
+    public static Circle of(double radius){
+        return new Circle(radius);
+    }
 }

@@ -14,4 +14,8 @@ public class Square extends Figure {
     public double countArea() {
         return length * length;
     }
+
+    public static Square of(double length){
+        return new Square(length);
+    }
 }
