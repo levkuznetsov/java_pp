@@ -5,7 +5,7 @@ import ui.Starter;
 import java.util.Scanner;
 
 public class Main {
-    Scanner sc = new Scanner(System.in);
+    private final Scanner sc = new Scanner(System.in);
 
     void main() {
         Starter starter = new CLI(sc, new ShapeAreaService());
