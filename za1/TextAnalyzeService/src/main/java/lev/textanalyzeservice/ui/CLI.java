@@ -1,8 +1,8 @@
 package ui;
 
+import dto.TextAnalyzeResult;
 import service.TextAnalyzeService;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class CLI implements Starter {
@@ -29,7 +29,7 @@ public class CLI implements Starter {
                 if (input.equals("1")) {
                     String text = view.getTextInput();
 
-                    TextAnalyzeService.TextAnalyzeResult result = service.analyzeText(text);
+                    TextAnalyzeResult result = service.analyzeText(text);
 
                     view.showResults(result.words_num(), result.letters_num(),
                                      result.punct_num(), result.space_num());

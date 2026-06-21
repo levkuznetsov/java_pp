@@ -1,11 +1,9 @@
 package service;
 
-import ui.ConsoleView;
+import dto.TextAnalyzeResult;
 
 public class TextAnalyzeService {
-    private static final String one_letter_words = "явкосуиабэ";
-
-    public record TextAnalyzeResult(int words_num, int letters_num, int punct_num, int space_num) { }
+    private static final String ONE_LETTER_WORDS = "явкосуиабэ";
 
     public TextAnalyzeResult analyzeText(String text) {
         int words_num = 0;
@@ -14,36 +12,36 @@ public class TextAnalyzeService {
         int space_num = 0;
 
         boolean inWord = false;
-        String currentWord = "";
+        StringBuilder currentWord = new StringBuilder();
 
         for (char c : text.toLowerCase().toCharArray()) {
             if (Character.isLetter(c)) {
                 letters_num++;
-                currentWord += c;
+                currentWord.append(c);
                 inWord = true;
             } else if (c == ' ') {
                 space_num++;
                 if (inWord) {
-                    if (currentWord.length() != 1 || one_letter_words.contains(currentWord)) {
+                    if (currentWord.length() != 1 || ONE_LETTER_WORDS.contains(currentWord.toString())) {
                         words_num++;
                     }
                     inWord = false;
-                    currentWord = "";
+                    currentWord = new StringBuilder();
                 }
             } else {
                 punct_num++;
                 if (inWord) {
-                    if (currentWord.length() != 1 || one_letter_words.contains(currentWord)) {
+                    if (currentWord.length() != 1 || ONE_LETTER_WORDS.contains(currentWord.toString())) {
                         words_num++;
                     }
                     inWord = false;
-                    currentWord = "";
+                    currentWord = new StringBuilder();
                 }
             }
         }
 
         if (inWord) {
-            if (currentWord.length() != 1 || one_letter_words.contains(currentWord)) {
+            if (currentWord.length() != 1 || ONE_LETTER_WORDS.contains(currentWord.toString())) {
                 words_num++;
             }
         }
