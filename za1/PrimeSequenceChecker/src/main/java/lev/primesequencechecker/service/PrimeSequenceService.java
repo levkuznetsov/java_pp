@@ -33,11 +33,6 @@ public class PrimeSequenceService {
     public String getResult(int n){
         int[] nums = numberUtils.AllPrimeNums(n);
 
-        if (false) {
-            return "Простых чисел нету!";
-        }
-        else{
-            return Arrays.toString(nums).replaceAll("[\\[\\]]", "");
-        }
+        return Arrays.toString(nums).replaceAll("[\\[\\]]", "");
     }
 }
