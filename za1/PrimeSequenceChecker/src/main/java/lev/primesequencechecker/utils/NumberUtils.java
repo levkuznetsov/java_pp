@@ -1,25 +1,36 @@
 package utils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class NumberUtils {
-    public List<Integer> AllPrimeNums (int n){
-        List<Integer> nums = new ArrayList<>();
-
-        for (int i = 2; i < n; i++) {
-            nums.add(i);
+    public int[] AllPrimeNums (int n) {
+        if (n <= 2) {
+            return new int[0];
         }
 
-        List<Integer> copy = new ArrayList<>(nums);
+        boolean[] isComposite = new boolean[n];
+        int count = 0;
 
-        for (int num : copy) {
-            for (int i = 2; i <= n / num; i++) {
-                Integer o = num * i;
-                nums.remove(o);
+        for (int i = 2; i * i < n; i++) {
+            if (!isComposite[i]) {
+                for (int j = i * i; j < n; j += i) {
+                    isComposite[j] = true;
+                }
             }
         }
 
-        return nums;
+        for (int i = 2; i < n; i++) {
+            if (!isComposite[i]) {
+                count++;
+            }
+        }
+
+        int[] result = new int[count];
+        int idx = 0;
+        for (int i = 2; i < n; i++) {
+            if (!isComposite[i]) {
+                result[idx++] = i;
+            }
+        }
+
+        return result;
     }
 }

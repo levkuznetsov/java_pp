@@ -2,33 +2,37 @@ package service;
 
 import utils.NumberUtils;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class PrimeSequenceService {
-    NumberUtils numberUtils = new NumberUtils();
+    private final NumberUtils numberUtils = new NumberUtils();
 
     public String randomQueue(int n){
-        List<Integer> nums = new ArrayList<>();
+        return randomQueue(n, new Random());
+    }
+
+    public String randomQueue(int n, Random rnd){
+        int[] nums = new int[n];
 
         for (int i = 0; i < n; i++) {
-            nums.add(i);
+            nums[i] = (i);
         }
 
-        Collections.shuffle(nums);
+        for (int i = n - 1; i > 0; i--) {
+            int j = rnd.nextInt(i + 1);
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+        }
 
-        return nums.toString().replaceAll("[\\[\\]]", "");
+        return Arrays.toString(nums).replaceAll("[\\[\\]]", "");
     }
 
     public String getResult(int n){
-        List<Integer> nums = numberUtils.AllPrimeNums(n);
+        int[] nums = numberUtils.AllPrimeNums(n);
 
-        if (nums.isEmpty()) {
-            return "Простых чисел нету!";
-        }
-        else{
-            return nums.toString().replaceAll("[\\[\\]]", "");
-        }
+        return Arrays.toString(nums).replaceAll("[\\[\\]]", "");
     }
 }

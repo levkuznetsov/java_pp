@@ -15,7 +15,7 @@ public class Square extends Figure {
         return length * length;
     }
 
-    public static Square of(double length){
+    public static Square of(double length) {
         return new Square(length);
     }
 }

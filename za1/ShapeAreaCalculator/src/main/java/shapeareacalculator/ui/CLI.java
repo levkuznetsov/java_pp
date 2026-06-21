@@ -12,7 +12,7 @@ public class CLI implements Starter {
     private final ShapeAreaService service;
 
     public CLI(Scanner sc, ShapeAreaService service) {
-        this.view = new ConsoleView(sc);
+        this.view = new ConsoleView(sc, service);
         this.service = service;
     }
 

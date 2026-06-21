@@ -1,17 +1,21 @@
 package ui;
 
+import service.ShapeAreaService;
+
 import java.util.Scanner;
 
 public class ConsoleView {
     private final Scanner sc;
+    private final ShapeAreaService shapeAreaService;
 
-    public ConsoleView(Scanner sc) {
+    public ConsoleView(Scanner sc, ShapeAreaService service) {
         this.sc = sc;
+        this.shapeAreaService = service;
     }
 
     public double getUserChoice(String prompt) {
         IO.println(prompt);
-        return Double.parseDouble(getInput().replace(',', '.'));
+        return shapeAreaService.formatArea(getInput());
     }
 
     public void showMenu() {

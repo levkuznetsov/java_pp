@@ -8,11 +8,19 @@ public class ShapeAreaService {
         return figure.countArea();
     }
 
-    public String formatArea(double area){
+    public String formatArea(double area) {
+        String value;
         if (area == (int) area) {
-            return String.valueOf((int) area).replace(',', '.').strip();
+            value = Integer.toString((int) area);
+        }
+        else {
+            value = Double.toString(area);
         }
 
-        return String.valueOf(area).replace(',', '.').strip();
+        return value.replace(',', '.').strip();
+    }
+
+    public Double formatArea(String area) {
+        return Double.parseDouble(area.replace(',', '.').strip());
     }
 }

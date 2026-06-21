@@ -4,8 +4,13 @@ import service.PrimeSequenceService;
 import java.util.Scanner;
 
 public class CLI implements Starter {
-    Scanner sc = new Scanner(System.in);
-    PrimeSequenceService primeSequenceService = new PrimeSequenceService();
+    private final Scanner sc;
+    private final PrimeSequenceService primeSequenceService;
+
+    public CLI(Scanner sc, PrimeSequenceService primeSequenceService) {
+        this.sc = sc;
+        this.primeSequenceService = primeSequenceService;
+    }
 
     @Override
     public void run() {
@@ -18,8 +23,6 @@ public class CLI implements Starter {
             }
 
             int inputNum = Integer.parseInt(input);
-
-            IO.println(primeSequenceService.randomQueue(inputNum));
             IO.println("Простые числа в последовательности: " + primeSequenceService.getResult(inputNum));
         }
     }
