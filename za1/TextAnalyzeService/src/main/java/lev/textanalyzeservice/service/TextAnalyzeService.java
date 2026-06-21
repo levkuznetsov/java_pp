@@ -1,6 +1,10 @@
 package service;
 
+import ui.ConsoleView;
+
 public class TextAnalyzeService {
+    private static final String one_letter_words = "явкосуиабэ";
+
     public record TextAnalyzeResult(int words_num, int letters_num, int punct_num, int space_num) { }
 
     public TextAnalyzeResult analyzeText(String text) {
@@ -9,23 +13,38 @@ public class TextAnalyzeService {
         int punct_num = 0;
         int space_num = 0;
 
-        boolean lastSpace = true;
+        boolean inWord = false;
+        String currentWord = "";
 
-        for (char c : text.toCharArray()) {
+        for (char c : text.toLowerCase().toCharArray()) {
             if (Character.isLetter(c)) {
-                if (lastSpace) {
-                    words_num++;
-                }
                 letters_num++;
-                lastSpace = false;
+                currentWord += c;
+                inWord = true;
             } else if (c == ' ') {
-                if (!lastSpace) {
-                    space_num++;
-                    lastSpace = true;
+                space_num++;
+                if (inWord) {
+                    if (currentWord.length() != 1 || one_letter_words.contains(currentWord)) {
+                        words_num++;
+                    }
+                    inWord = false;
+                    currentWord = "";
                 }
             } else {
                 punct_num++;
-                lastSpace = false;
+                if (inWord) {
+                    if (currentWord.length() != 1 || one_letter_words.contains(currentWord)) {
+                        words_num++;
+                    }
+                    inWord = false;
+                    currentWord = "";
+                }
+            }
+        }
+
+        if (inWord) {
+            if (currentWord.length() != 1 || one_letter_words.contains(currentWord)) {
+                words_num++;
             }
         }
 
